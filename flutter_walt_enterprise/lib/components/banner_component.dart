@@ -19,7 +19,7 @@ class BannerComponent extends StatelessWidget {
           return Image.asset(
             list[index]['image'],
             width: ScreenUtil().setWidth(750),
-            height: ScreenUtil().setWidth(230),
+            height: ScreenUtil().setHeight(230),
             fit: BoxFit.cover,
           );
         },
