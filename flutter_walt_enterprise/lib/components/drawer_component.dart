@@ -59,105 +59,116 @@ class _DrawerComponentState extends State<DrawerComponent> {
           ),
 
           ListTile(
+            onTap: (){
+              setState(() {
+                highLightIndex = 2;
+              });
+              Navigator.of(context).pushNamed('news_list_page');
+            },
             title: Text(
               '新闻中心', style: TextStyle(fontSize: 20,color: highLightIndex==2? Colors.blue : Colors.black),
             ),
-            trailing: IconButton(
-              icon: Icon(highLightIndex ==2 ? Icons.remove : Icons.add),
-              onPressed: (){
-                setState(() {
-                  highLightIndex = 2;
-                  hideOrShow = hideOrShow ? false : true;
-                });
-              },
-            ),
+//            trailing: IconButton(
+//              icon: Icon(highLightIndex ==2 ? Icons.remove : Icons.add),
+//              onPressed: (){
+//                setState(() {
+//                  highLightIndex = 2;
+//                  hideOrShow = hideOrShow ? false : true;
+//                });
+//              },
+//            ),
           ),
 
-          FutureBuilder(
-            future: null,
-            builder: (BuildContext context,snapshot){
-              if(highLightIndex == 2 && hideOrShow){
-                return Column(
-                  children: <Widget>[
-                    ListTile(
-                      title: Text('公司资讯', style: TextStyle(fontSize: 20)),
-                      leading: Container(width: 20,),
-                      onTap: (){
-                        setState(() {
-                          highLightIndex = 2;
-                        });
-                      },
-                    ),
-                    ListTile(
-                      title: Text('行业资讯', style: TextStyle(fontSize: 20)),
-                      leading: Container(width: 20,),
-                      onTap: (){
-                        setState(() {
-                          highLightIndex = 2;
-                        });
-                      },
-                    ),
-
-                  ],
-                );
-              }
-              return Container();
-            },
-          ),
+//          FutureBuilder(
+//            future: null,
+//            builder: (BuildContext context,snapshot){
+//              if(highLightIndex == 2 && hideOrShow){
+//                return Column(
+//                  children: <Widget>[
+//                    ListTile(
+//                      title: Text('公司资讯', style: TextStyle(fontSize: 20)),
+//                      leading: Container(width: 20,),
+//                      onTap: (){
+//                        setState(() {
+//                          highLightIndex = 2;
+//                        });
+//                      },
+//                    ),
+//                    ListTile(
+//                      title: Text('行业资讯', style: TextStyle(fontSize: 20)),
+//                      leading: Container(width: 20,),
+//                      onTap: (){
+//                        setState(() {
+//                          highLightIndex = 2;
+//                        });
+//                      },
+//                    ),
+//
+//                  ],
+//                );
+//              }
+//              return Container();
+//            },
+//          ),
 
           Divider(
             height: 1,
           ),
 
           ListTile(
+            onTap: (){
+                setState(() {
+                  highLightIndex = 3;
+                });
+              Navigator.of(context).pushNamed('product_list_page');
+            },
             title: Text(
               '产品展示', style: TextStyle(fontSize: 20,color: highLightIndex==3? Colors.blue : Colors.black),
             ),
-            trailing: IconButton(
-              icon: Icon(highLightIndex ==3 ? Icons.remove : Icons.add),
-              onPressed: (){
-                setState(() {
-                  highLightIndex = 3;
-                  hideOrShow = hideOrShow ? false : true;
-                });
-
-                Navigator.of(context).pushNamed('product_list_page');
-
-              },
-            ),
+//            trailing: IconButton(
+//              icon: Icon(highLightIndex ==3 ? Icons.remove : Icons.add),
+//              onPressed: (){
+//                setState(() {
+//                  highLightIndex = 3;
+//                  hideOrShow = hideOrShow ? false : true;
+//                });
+//              },
+//            ),
           ),
 
-          FutureBuilder(
-            future: null,
-            builder: (BuildContext context,snapshot){
-              if(highLightIndex == 3 && hideOrShow){
-                return Column(
-                  children: <Widget>[
-                    ListTile(
-                      title: Text('硬件产品', style: TextStyle(fontSize: 20)),
-                      leading: Container(width: 20,),
-                      onTap: (){
-                        setState(() {
-                          highLightIndex = 3;
-                        });
-                      },
-                    ),
-                    ListTile(
-                      title: Text('软件产品', style: TextStyle(fontSize: 20)),
-                      leading: Container(width: 20,),
-                      onTap: (){
-                        setState(() {
-                          highLightIndex = 3;
-                        });
-                      },
-                    ),
-
-                  ],
-                );
-              }
-              return Container();
-            },
-          ),
+//          FutureBuilder(
+//            future: null,
+//            builder: (BuildContext context,snapshot){
+//              if(highLightIndex == 3 && hideOrShow){
+//                return Column(
+//                  children: <Widget>[
+//                    ListTile(
+//                      title: Text('硬件产品', style: TextStyle(fontSize: 20)),
+//                      leading: Container(width: 20,),
+//                      onTap: (){
+//                        setState(() {
+//                          highLightIndex = 3;
+//                        });
+//
+//
+//                      },
+//                    ),
+//                    ListTile(
+//                      title: Text('软件产品', style: TextStyle(fontSize: 20)),
+//                      leading: Container(width: 20,),
+//                      onTap: (){
+//                        setState(() {
+//                          highLightIndex = 3;
+//                        });
+//                      },
+//                    ),
+//
+//                  ],
+//                );
+//              }
+//              return Container();
+//            },
+//          ),
 
           Divider(
             height: 1,
@@ -187,6 +198,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
               setState(() {
                 highLightIndex = 5;
               });
+              Navigator.of(context).pushNamed('contact_us');
             },
           ),
 

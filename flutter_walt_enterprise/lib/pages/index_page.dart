@@ -66,19 +66,19 @@ class _IndexPageState extends State<IndexPage> {
               ),
 
               //产品展示
-              _commonHeader('assets/images/dog1.jpg','产品展示',''),
+              _commonHeader('assets/images/dog1.jpg','产品展示','product_list_page'),
               MySeparator(height: 0.2,),
               _productListBox(),
 
-              _commonHeader('assets/images/dog2.jpg','新闻中心',''),
+              _commonHeader('assets/images/dog2.jpg','新闻中心','news_list_page'),
               MySeparator(height: 0.2,),
               _newsListBox(),
 
-              _commonHeader('assets/images/dog2.jpg','关于我们',''),
+              _commonHeader('assets/images/dog2.jpg','关于我们','about_us'),
               MySeparator(height: 0.2,),
               _aboutUsBox(),
 
-              _commonHeader('assets/images/dog2.jpg','联系我们',''),
+              _commonHeader('assets/images/dog2.jpg','联系我们','contact_us'),
               MySeparator(height: 0.2,),
               _contactUsBox(),
 
