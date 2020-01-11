@@ -136,7 +136,7 @@ class _LeaveMessagePageState extends State<LeaveMessagePage> {
         controller: _controller,
         decoration: new InputDecoration(
           labelText: _getLabelName(str),
-
+          border: OutlineInputBorder(),
         ),
         autofocus: false,
         maxLines: str=='msg'? 3:1,

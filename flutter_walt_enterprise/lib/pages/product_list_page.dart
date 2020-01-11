@@ -8,6 +8,7 @@ import 'package:flutter_walt_enterprise/components/my_separator.dart';
 import 'package:flutter_walt_enterprise/datas/product_data.dart';
 import 'package:flutter_walt_enterprise/datas/news_data.dart';
 import 'package:flutter_walt_enterprise/datas/about_us_data.dart';
+import 'package:flutter_walt_enterprise/pages/product_detail_page.dart';
 
 class ProductListPageHome extends StatelessWidget {
   @override
@@ -107,37 +108,45 @@ class _ProductListPageState extends State<ProductListPage> {
   }
 
   Widget _productItem(Map item){
+    return InkWell(
+      onTap: (){
 
-    return Container(
-      width: ScreenUtil().setWidth(370),
-      height: ScreenUtil().setHeight(340),
-      decoration: BoxDecoration(
-        border: Border(
-          left:BorderSide(style: BorderStyle.solid),
-          right: BorderSide(style: BorderStyle.solid),
-          top: BorderSide(style: BorderStyle.solid),
-          bottom: BorderSide(style: BorderStyle.solid),
-        ),
-      ),
-      child: Column(
-        children: <Widget>[
-          Image.asset(item['image'],
-            width: ScreenUtil().setWidth(370),
-            height: ScreenUtil().setHeight(290),
-            fit: BoxFit.cover,
+        Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
+          return new ProductDetailPage(id: item['id']);
+        }));
+
+      },
+      child: Container(
+        width: ScreenUtil().setWidth(370),
+        height: ScreenUtil().setHeight(340),
+        decoration: BoxDecoration(
+          border: Border(
+            left:BorderSide(style: BorderStyle.solid),
+            right: BorderSide(style: BorderStyle.solid),
+            top: BorderSide(style: BorderStyle.solid),
+            bottom: BorderSide(style: BorderStyle.solid),
           ),
-          Container(
-            width: ScreenUtil().setWidth(370),
-            height: ScreenUtil().setHeight(48),
-            child: Text(item['name'],
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20,
-                color: Color.fromRGBO(95,95,95, 1),
+        ),
+        child: Column(
+          children: <Widget>[
+            Image.asset(item['image'],
+              width: ScreenUtil().setWidth(370),
+              height: ScreenUtil().setHeight(290),
+              fit: BoxFit.cover,
+            ),
+            Container(
+              width: ScreenUtil().setWidth(370),
+              height: ScreenUtil().setHeight(48),
+              child: Text(item['name'],
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromRGBO(95,95,95, 1),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
 
