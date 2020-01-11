@@ -1,12 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_walt_enterprise/datas/banner_data.dart';
+
 
 class BannerComponent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BannerComponentBox();
+  }
+}
 
-  final List list;
 
-  BannerComponent({this.list});
+class BannerComponentBox extends StatefulWidget {
+  @override
+  _BannerComponentBoxState createState() => _BannerComponentBoxState();
+}
+
+
+class _BannerComponentBoxState extends State<BannerComponentBox> {
+
+  List list;
+
+  @override
+  void initState() {
+    super.initState();
+    this.list = BannerData.list;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +49,5 @@ class BannerComponent extends StatelessWidget {
     );
   }
 
-
-
 }
+

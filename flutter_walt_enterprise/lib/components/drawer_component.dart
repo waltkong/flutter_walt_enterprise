@@ -10,6 +10,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
   int highLightIndex = 0;
   bool hideOrShow = true;
 
+
   @override
   Widget build(BuildContext context) {
 
@@ -27,6 +28,9 @@ class _DrawerComponentState extends State<DrawerComponent> {
               setState(() {
                 highLightIndex = 0;
               });
+
+              Navigator.of(context).pushNamed('/');
+
             },
           ),
 
@@ -35,51 +39,20 @@ class _DrawerComponentState extends State<DrawerComponent> {
           ),
 
           ListTile(
+
             title: Text(
               '关于我们', style: TextStyle(fontSize: 20,color: highLightIndex==1? Colors.blue : Colors.black),
             ),
-            trailing: IconButton(
-              icon: Icon(highLightIndex ==1 ? Icons.remove : Icons.add),
-              onPressed: (){
-                setState(() {
-                  highLightIndex = 1;
-                  hideOrShow = hideOrShow ? false : true;
-                });
-              },
-            ),
-          ),
 
-          FutureBuilder(
-            future: null,
-            builder: (BuildContext context,snapshot){
-              if(highLightIndex == 1 && hideOrShow){
-                return Column(
-                  children: <Widget>[
-                    ListTile(
-                      title: Text('公司简介', style: TextStyle(fontSize: 20)),
-                      leading: Container(width: 20,),
-                      onTap: (){
-                        setState(() {
-                          highLightIndex = 1;
-                        });
-                      },
-                    ),
-                    ListTile(
-                      title: Text('荣誉资质', style: TextStyle(fontSize: 20)),
-                      leading: Container(width: 20,),
-                      onTap: (){
-                        setState(() {
-                          highLightIndex = 1;
-                        });
-                      },
-                    ),
-
-                  ],
-                );
-              }
-              return Container();
+            onTap: (){
+              setState(() {
+                highLightIndex = 1;
+              });
+              Navigator.of(context).pushNamed('about_us');
             },
+
           ),
+
 
           Divider(
             height: 1,
@@ -147,6 +120,9 @@ class _DrawerComponentState extends State<DrawerComponent> {
                   highLightIndex = 3;
                   hideOrShow = hideOrShow ? false : true;
                 });
+
+                Navigator.of(context).pushNamed('product_list_page');
+
               },
             ),
           ),

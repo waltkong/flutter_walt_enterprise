@@ -6,7 +6,6 @@ import 'package:flutter_walt_enterprise/components/banner_component.dart';
 import 'package:flutter_walt_enterprise/components/my_separator.dart';
 
 import 'package:flutter_walt_enterprise/datas/product_data.dart';
-import 'package:flutter_walt_enterprise/datas/banner_data.dart';
 import 'package:flutter_walt_enterprise/datas/news_data.dart';
 import 'package:flutter_walt_enterprise/datas/about_us_data.dart';
 
@@ -25,17 +24,14 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
 
-  List _bannerList;
   List _productList;
   List _newsList;
   Map _aboutUsInfo;
-
 
   @override
   void initState() {
     super.initState();
 
-    this._bannerList = BannerData.list;
     this._productList = ProductData.list;
 
     this._productList.retainWhere((element) => int.parse(element['id']) <5 );
@@ -52,6 +48,7 @@ class _IndexPageState extends State<IndexPage> {
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context); //iphone6 必须build里写
 
     return Container(
+
       child: Scaffold(
         appBar: AppBar(
           title: Text('我的官网'),
@@ -65,7 +62,7 @@ class _IndexPageState extends State<IndexPage> {
 
             // banner
               Container(
-                child: BannerComponent(list:_bannerList),
+                child: BannerComponent(),
               ),
 
               //产品展示
@@ -89,6 +86,7 @@ class _IndexPageState extends State<IndexPage> {
           ),
         ),
       ),
+
     );
   }
 
