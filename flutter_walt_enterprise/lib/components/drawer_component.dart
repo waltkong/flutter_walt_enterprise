@@ -183,6 +183,8 @@ class _DrawerComponentState extends State<DrawerComponent> {
               setState(() {
                 highLightIndex = 4;
               });
+              Navigator.of(context).pushNamed('leave_message_page');
+
             },
           ),
 

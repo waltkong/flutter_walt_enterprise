@@ -4,6 +4,7 @@ import 'package:flutter_walt_enterprise/pages/product_list_page.dart';
 import 'package:flutter_walt_enterprise/pages/about_us_page.dart';
 import 'package:flutter_walt_enterprise/pages/contact_us_page.dart';
 import 'package:flutter_walt_enterprise/pages/news_list_page.dart';
+import 'package:flutter_walt_enterprise/pages/leave_message_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         'about_us':(context) => AboutUsPageHome(),
         'contact_us':(context) => ContactUsPageHome(),
         'news_list_page':(contact) => NewsListPageHome(),
+        'leave_message_page':(contact) => LeaveMessagePageHome(),
 
       },
     );
