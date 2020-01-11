@@ -4,8 +4,11 @@ import 'package:flutter_walt_enterprise/components/drawer_component.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_walt_enterprise/components/banner_component.dart';
 import 'package:flutter_walt_enterprise/components/my_separator.dart';
+
 import 'package:flutter_walt_enterprise/datas/product_data.dart';
 import 'package:flutter_walt_enterprise/datas/banner_data.dart';
+import 'package:flutter_walt_enterprise/datas/news_data.dart';
+import 'package:flutter_walt_enterprise/datas/about_us_data.dart';
 
 class IndexPageHome extends StatelessWidget {
   @override
@@ -24,6 +27,8 @@ class _IndexPageState extends State<IndexPage> {
 
   List _bannerList;
   List _productList;
+  List _newsList;
+  Map _aboutUsInfo;
 
 
   @override
@@ -32,6 +37,13 @@ class _IndexPageState extends State<IndexPage> {
 
     this._bannerList = BannerData.list;
     this._productList = ProductData.list;
+
+    this._productList.retainWhere((element) => int.parse(element['id']) <5 );
+
+    this._newsList  = NewsData.list;
+    this._newsList.retainWhere((element) => int.parse(element['id']) <5 );
+
+    this._aboutUsInfo = AboutUsData.data;
   }
 
   @override
@@ -61,20 +73,169 @@ class _IndexPageState extends State<IndexPage> {
               MySeparator(height: 0.2,),
               _productListBox(),
 
+              _commonHeader('assets/images/dog2.jpg','新闻中心',''),
+              MySeparator(height: 0.2,),
+              _newsListBox(),
 
-              _commonHeader('assets/images/dog2.jpg','新闻中心',''),
+              _commonHeader('assets/images/dog2.jpg','关于我们',''),
               MySeparator(height: 0.2,),
-              _commonHeader('assets/images/dog2.jpg','新闻中心',''),
-              MySeparator(height: 0.2,),
-              _commonHeader('assets/images/dog2.jpg','新闻中心',''),
-              MySeparator(height: 0.2,),
-              _commonHeader('assets/images/dog2.jpg','新闻中心',''),
-              MySeparator(height: 0.2,),
+              _aboutUsBox(),
 
+              _commonHeader('assets/images/dog2.jpg','联系我们',''),
+              MySeparator(height: 0.2,),
+              _contactUsBox(),
 
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _contactUsBox(){
+    return Container(
+      margin: EdgeInsets.only(top:10),
+      padding: EdgeInsets.all(5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+
+          Container(
+            height: ScreenUtil().setHeight(100),
+            child: Text(
+              "公司地址： ${_aboutUsInfo['address']}",
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.left,
+            ),
+          ),
+
+          Container(
+            height: ScreenUtil().setHeight(100),
+            child: Text(
+                "联系电话： ${_aboutUsInfo['phone']}",
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.left,
+            ),
+          ),
+
+          Container(
+            height: ScreenUtil().setHeight(100),
+            child: Text(
+                "联系人： ${_aboutUsInfo['user']}",
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.left,
+            ),
+          ),
+
+
+
+        ],
+      ),
+    );
+  }
+
+
+  Widget _aboutUsBox(){
+    return Container(
+      margin: EdgeInsets.only(top:10),
+      padding: EdgeInsets.all(5),
+      child: Column(
+        children: <Widget>[
+
+          Image.asset(_aboutUsInfo['image'],
+            width: ScreenUtil().setWidth(730),
+            height: ScreenUtil().setHeight(400),
+            fit: BoxFit.cover,
+          ),
+
+          Container(
+            width: ScreenUtil().setWidth(730),
+            height: ScreenUtil().setHeight(450),
+            child: Text(
+              _aboutUsInfo['content'],
+              style: TextStyle(
+                color: Color.fromRGBO(153,153,153, 1),
+                fontSize: 18,
+              ),
+              overflow:TextOverflow.ellipsis,
+              maxLines: 8,
+            ),
+          ),
+
+
+
+        ],
+      ),
+    );
+  }
+
+
+
+  Widget _newsListBox(){
+    return Container(
+      margin: EdgeInsets.only(top:10),
+      child: Column(
+        children: _getNewsListWidget(),
+      ),
+    );
+  }
+
+
+  List<Widget> _getNewsListWidget(){
+    return _newsList.map((item){
+      return _newsItem(item);
+    }).toList();
+  }
+
+  Widget _newsItem(Map item){
+    return Container(
+      width: ScreenUtil().setWidth(750),
+      height: ScreenUtil().setHeight(200),
+      padding: EdgeInsets.all(10),
+      child:   Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+
+          Container(
+            width: ScreenUtil().setWidth(160),
+            height:  ScreenUtil().setHeight(160),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Color.fromRGBO(46,58,124, 1),
+            ),
+            child: Column(
+              children: <Widget>[
+                Text(item['time_d'],textAlign: TextAlign.center,style: TextStyle(fontSize: 20,color: Colors.white),),
+                Text(item['time_ym'],textAlign: TextAlign.center,style: TextStyle(fontSize: 14,color: Colors.white),),
+              ],
+            ),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(left: 10,right: 10),
+            width: ScreenUtil().setWidth(450),
+            height:  ScreenUtil().setHeight(160),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  child: Text(item['name'],
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w300),
+                    overflow: TextOverflow.ellipsis,),
+                ),
+                Container(
+                  child: Text(item['description'],
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 16,color: Colors.black),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+
+                ),
+              ],
+            ),
+          ),
+
+        ],
       ),
     );
   }
@@ -89,7 +250,15 @@ class _IndexPageState extends State<IndexPage> {
   Widget _productItem(Map item){
     return Container(
       width: ScreenUtil().setWidth(370),
-      height: ScreenUtil().setHeight(370),
+      height: ScreenUtil().setHeight(340),
+      decoration: BoxDecoration(
+        border: Border(
+          left:BorderSide(style: BorderStyle.solid),
+          right: BorderSide(style: BorderStyle.solid),
+          top: BorderSide(style: BorderStyle.solid),
+          bottom: BorderSide(style: BorderStyle.solid),
+        ),
+      ),
       child: Column(
         children: <Widget>[
           Image.asset(item['image'],
@@ -99,7 +268,7 @@ class _IndexPageState extends State<IndexPage> {
           ),
           Container(
             width: ScreenUtil().setWidth(370),
-            height: ScreenUtil().setHeight(78),
+            height: ScreenUtil().setHeight(48),
             child: Text(item['name'],
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -118,7 +287,8 @@ class _IndexPageState extends State<IndexPage> {
   Widget _productListBox(){
     return Container(
       width: ScreenUtil().setWidth(750),
-      height: ScreenUtil().setWidth(750),
+      height: ScreenUtil().setHeight(750),
+      margin: EdgeInsets.only(top:10),
       child: GridView.count(
         children: _getProductListWidget(),
         crossAxisCount: 2,
