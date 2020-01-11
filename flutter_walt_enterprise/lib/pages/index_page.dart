@@ -327,7 +327,7 @@ class _IndexPageState extends State<IndexPage> {
 
           InkWell(
             onTap: (){
-
+              Navigator.of(context).pushNamed(_route);
             },
             child: Container(
               decoration: BoxDecoration(
